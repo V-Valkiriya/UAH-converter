@@ -21,7 +21,7 @@ function App(props) {
 
    useEffect(() => {
     bankData();
-})
+}, [])
 
    const useData = (arr) => {
     return {
@@ -43,6 +43,7 @@ function App(props) {
   const reset = () => {
     setResult(result => result = null);
   }
+  
 
 
   return (
