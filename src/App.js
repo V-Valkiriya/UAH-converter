@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 function App(props) {
   const [data, setData] = useState();
   const [result, setResult] = useState();
+  const [value, setValue] = useState('');
 
   const getResource = async(url) => {
     let res = await fetch(url);
@@ -37,19 +38,32 @@ function App(props) {
     found[0].cc === 'EUR' ? ' €' :
     found[0].cc === 'CHF' ? ' ₣' :
     found[0].cc === 'PLN' ? ' zł' : null;
-    setResult(result => (Math.round(props.counter / found[0].rate) + symbol));
+    setResult(result => (Math.round(value / found[0].rate) + symbol));
   }
 
-  const reset = () => {
-    setResult(result => result = null);
+  const change = (e) => {
+     setValue(e.target.value);
   }
-  
+
+  const reset = (e) => {
+    setResult(result => result = null);
+     setValue('');
+  }
+    
 
 
   return (
    <>
    <div className="container">
-      <div className="header">Amount in UAH: {props.counter}</div>
+      <div className="header">Amount in UAH:
+      <input
+      className="input"
+      value={value}
+      onChange={change}
+      type="number"
+      name="name"
+
+              /></div>
         <div className="screen">{result}</div>
         <div className="btns">
           <button onClick={() => calcCourse('USD')}>USD</button>
