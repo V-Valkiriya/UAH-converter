@@ -1,4 +1,4 @@
 ## Curency converter for hryvnia
 
 ##### Preview 
-![preview]()
+![preview](public/preview.png)
